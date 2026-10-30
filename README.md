@@ -24,3 +24,17 @@ library callers supply their own sensor variances and positive sampling interval
 No attitude, accelerometer bias or pressure-to-altitude correction is estimated.
 The test checks an analytic trajectory, covariance positivity and rejection atomicity.
 MIT; C99 compiler and libm only.
+
+## Library integration
+
+```c
+#include "kalman.h"
+AltimeterState estimate = {0, 0, 100, 0, 100, 0, 0};
+int accepted = altimeter_step(&estimate, 0.1, 2.0, 0.03, 0.25, 25.0);
+```
+
+The initial covariance is in squared meters and squared meters/second. `p01`
+is the position/velocity cross covariance. `altimeter_step` returns zero on
+invalid inputs without changing the estimate. Choose initial uncertainty to match
+the launch reference and speed estimate; the CLI starts at altitude and speed zero.
+Time stamps must increase strictly and all inputs must be finite.
