@@ -1,5 +1,7 @@
 # One-axis altimeter filter
 
+[Portfolio: melgoldstein.com](https://melgoldstein.com/)
+
 Constant-acceleration prediction with a two-state altitude/velocity Kalman filter.
 Acceleration is an external vertical input with gravity already removed. Barometer
 updates use a scalar Joseph covariance correction; rejected inputs leave state intact.
